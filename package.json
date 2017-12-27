@@ -1,7 +1,7 @@
 {
-  "name": "rss-combiner",
+  "name": "rss-combiner-ns",
   "version": "0.0.5",
-  "description": "Combine multiple RSS feed sources into one",
+  "description": "Combine multiple RSS feed sources into one (with namespace support)",
   "keywords": [
     "rss",
     "xml",
@@ -16,7 +16,7 @@
   "scripts": {
     "test": "mocha -u tdd --reporter spec"
   },
-  "homepage": "http://github.com/awocallaghan/node-rss-combiner",
+  "homepage": "http://github.com/paulkinlan/node-rss-combiner",
   "author": {
     "name": "Alex O'Callaghan",
     "email": "awocallaghan@gmail.com"
@@ -24,7 +24,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/awocallaghan/node-rss-combiner.git"
+    "url": "http://github.com/paulkinlan/node-rss-combiner"
   },
   "dependencies": {
     "feedparser": "^1.1.4",
