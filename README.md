@@ -1,6 +1,9 @@
 rss-combiner [![Build Status](https://travis-ci.org/awocallaghan/node-rss-combiner.svg?branch=master)](https://travis-ci.org/awocallaghan/node-rss-combiner)
 ======
 
+Note: this is a fork of https://travis-ci.org/awocallaghan/node-rss-combiner - it is not meant
+to exist, I just needed to fork it.
+
 Combine multiple RSS feeds into one using [node-feedparser](https://www.npmjs.com/package/node-feedparser "npm node-feedparser package") and [rss](https://www.npmjs.com/package/rss "npm rss package").
 
     npm install rss-combiner
