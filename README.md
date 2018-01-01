@@ -31,6 +31,55 @@ RSSCombiner(feedConfig, function (err, combinedFeed) {
 });
 ```
 
+#### Combine feeds and import custom XML namespaces
+```js
+var RSSCombiner = require('rss-combiner');
+var feedConfig = {
+  custom_namespaces: {
+    'content': 'http://purl.org/rss/1.0/modules/content/',
+    'dc': 'http://purl.org/dc/elements/1.1/'
+  }
+};
+
+// Promise usage
+RSSCombiner(feedConfig)
+  .then(function (combinedFeed) {
+    var xml = combinedFeed.xml();
+  });
+
+// Node callback usage
+RSSCombiner(feedConfig, function (err, combinedFeed) {
+  if (err) {
+    console.error(err);
+  } else {
+    var xml = combinedFeed.xml();
+  }
+});
+```
+
+#### Combine feeds and get a callback for each feed fetched.
+```js
+var RSSCombiner = require('rss-combiner');
+var feedConfig = {
+  successfulFetchCallback: function(streamInfo) { console.log(streamInfo) }
+};
+
+// Promise usage
+RSSCombiner(feedConfig)
+  .then(function (combinedFeed) {
+    var xml = combinedFeed.xml();
+  });
+
+// Node callback usage
+RSSCombiner(feedConfig, function (err, combinedFeed) {
+  if (err) {
+    console.error(err);
+  } else {
+    var xml = combinedFeed.xml();
+  }
+});
+```
+
 ##### `feedOptions`
 
 See [rss](https://www.npmjs.com/package/rss#feedoptions "feedOptions - rss (npm)") `feedOptions`
