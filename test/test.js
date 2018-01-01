@@ -109,8 +109,9 @@ describe('RSSCombiner', function() {
         'http://feeds.bbci.co.uk/news/rss.xml?edition=uk',
         'http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml'
       ],
-      successfulFetchCallback: function(streamInfo) { /* Some sort of assert will go here. */ console.log(streamInfo) }
+      successfulFetchCallback: function(streamInfo) { /* Some sort of assert will go here. */ }
     };
+
     assert.isFulfilled(RSSCombiner(config));
   });
 });
