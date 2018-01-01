@@ -14,7 +14,7 @@
   ],
   "main": "lib/index",
   "scripts": {
-    "test": "mocha -u tdd --reporter spec"
+    "test": "mocha --inspect-brk -u tdd --reporter spec"
   },
   "homepage": "http://github.com/paulkinlan/node-rss-combiner",
   "author": {
