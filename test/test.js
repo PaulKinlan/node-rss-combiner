@@ -74,4 +74,43 @@ describe('RSSCombiner', function() {
 
     assert.isFulfilled(RSSCombiner(config));
   });
+
+  it('shouldn\'t reject if callback is a funciton', function() {
+
+    let config = {
+      size: 5,
+      feeds: [
+        'http://feeds.bbci.co.uk/news/rss.xml?edition=uk',
+        'http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml'
+      ],
+      successfulFetchCallback: function() {}
+    };
+
+    assert.isFulfilled(RSSCombiner(config), 'Should fail if successfulFetchCallback is not a function');
+  });
+
+  it('should reject if callback is not a funciton', function() {
+    let config = {
+      size: 5,
+      feeds: [
+        'http://feeds.bbci.co.uk/news/rss.xml?edition=uk',
+        'http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml'
+      ],
+      successfulFetchCallback: 'test'
+    };
+
+    assert.isRejected(RSSCombiner(config), 'Should pass if successfulFetchCallback is a function');
+  });
+
+  it('shouldn pass a stream into callback on successful fetch', function() {
+    let config = {
+      size: 5,
+      feeds: [
+        'http://feeds.bbci.co.uk/news/rss.xml?edition=uk',
+        'http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml'
+      ],
+      successfulFetchCallback: function(stream) { /* Some sort of assert will go here. */ }
+    };
+    assert.isFulfilled(RSSCombiner(config));
+  });
 });
