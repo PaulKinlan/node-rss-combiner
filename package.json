@@ -1,6 +1,6 @@
 {
   "name": "rss-combiner-ns",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Combine multiple RSS feed sources into one (with namespace support)",
   "keywords": [
     "rss",
@@ -31,7 +31,8 @@
     "lodash": "^4.13.1",
     "q": "^1.4.1",
     "request": "^2.72.0",
-    "rss": "^1.2.1"
+    "rss": "^1.2.1",
+    "tee": "^0.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
