@@ -5,6 +5,8 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const assert = chai.assert;
 
+const streamToString = require('stream-to-string');
+
 const RSSCombiner = require('../lib');
 
 describe('RSSCombiner', function() {
@@ -103,15 +105,20 @@ describe('RSSCombiner', function() {
   });
 
   it('shouldn pass a stream into callback on successful fetch', function() {
+    const output = {}
     let config = {
-      size: 5,
+      size: 100,
       feeds: [
-        'http://feeds.bbci.co.uk/news/rss.xml?edition=uk',
-        'http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml'
+        "https://bitsofco.de/rss/", "https://rachelandrew.co.uk/archives/rss.php", "http://rachelnabors.com/rss", "https://thewebivore.com/feed/", "https://blogs.msmvps.com/deborahk/feed/", "https://medium.com/feed/@jecelynyeen", "https://remysharp.com/feed.xml", "https://medium.com/feed/@urish", "https://medium.com/feed/@granze", "https://toddmotto.com/feed.xml", "https://medium.com/feed/@wassimchegham", "https://medium.com/feed/@jorgeucano", "https://omranic.com/feed/", "https://belcher.blog/feed/", "https://50linesofco.de/rss.xml", "https://medium.com/feed/@webmaxru", "https://loiane.com/feed.xml", "https://philna.sh/feed.xml", "https://gokulkrishh.github.io/feed.xml", "https://jvandemo.com/rss/", "https://medium.com/feed/@filipbech", "https://feeds.feedburner.com/juristrumpflohner", "https://meiert.com/en/feed/", "https://medium.com/feed/@cironunesdev", "https://medium.com/feed/@thangman22"
       ],
-      successfulFetchCallback: function(streamInfo) { /* Some sort of assert will go here. */ }
+      successfulFetchCallback: function(streamInfo) { /* Some sort of assert will go here. */ output[streamInfo.url] = streamInfo.stream}
     };
 
-    assert.isFulfilled(RSSCombiner(config));
+    assert.isFulfilled(RSSCombiner(config).then(feed=> {
+      console.log('feedxml length', feed.xml().length);
+      for(let item in output) {
+        console.log(output[item]);
+      }
+    }));
   });
 });
