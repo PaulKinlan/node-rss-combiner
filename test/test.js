@@ -1,7 +1,10 @@
 'use strict';
 
 const chai = require('chai');
+const fs = require('fs');
 const chaiAsPromised = require('chai-as-promised');
+
+const mockServer = require("mockttp").getLocal();
 chai.use(chaiAsPromised);
 const assert = chai.assert;
 
@@ -91,6 +94,26 @@ describe('RSSCombiner', function() {
     assert.isFulfilled(RSSCombiner(config), 'Should fail if successfulFetchCallback is not a function');
   });
 
+  it('should order items correctly', function() {
+    let config = {
+      size: 5,
+      feeds: [
+        'http://localhost:8089/test/atomdates.xml'
+      ]
+    };
+
+    mockServer.start(8089);
+
+    mockServer.get("/test/atomdates.xml")
+      .thenReply(200, fs.readFileSync('./test/data/atomdates.xml'))
+      .then(() => {
+        return RSSCombiner(config).then(feed=> {
+          
+        });
+      })
+      .then(()=> mockServer.stop());
+  });
+
   it('should reject if callback is not a funciton', function() {
     let config = {
       size: 5,
@@ -117,7 +140,7 @@ describe('RSSCombiner', function() {
     assert.isFulfilled(RSSCombiner(config).then(feed=> {
       console.log('feedxml length', feed.xml().length);
       for(let item in output) {
-        console.log(output[item]);
+        console.log(`${item} length: ${output[item].length}`);
       }
     }));
   });
