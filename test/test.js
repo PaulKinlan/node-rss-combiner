@@ -108,7 +108,7 @@ describe('RSSCombiner', function() {
       .thenReply(200, fs.readFileSync('./test/data/atomdates.xml'))
       .then(() => {
         return RSSCombiner(config).then(feed=> {
-          
+          console.log(feed)
         });
       })
       .then(()=> mockServer.stop());
