@@ -1,6 +1,6 @@
 {
   "name": "rss-combiner-ns",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Combine multiple RSS feed sources into one (with namespace support)",
   "keywords": [
     "rss",
@@ -14,7 +14,8 @@
   ],
   "main": "lib/index",
   "scripts": {
-    "test": "mocha --inspect-brk -u tdd --reporter spec"
+    "test-brk": "mocha --inspect-brk -u tdd --reporter spec",
+    "test": "mocha -u tdd --reporter spec"
   },
   "homepage": "http://github.com/paulkinlan/node-rss-combiner",
   "author": {

@@ -5,18 +5,21 @@ var fs = require('fs');
 var techFeedConfig = {
     size: 20,
     feeds: [
-        'http://feeds.bbci.co.uk/news/technology/rss.xml', // BBC tech news
-        'https://news.ycombinator.com/rss', // Hacker News
-        'https://www.theguardian.com/uk/technology/rss', // Guardian tech news
-        'http://www.engadget.com/rss.xml', // Engadget
+        "https://rachelandrew.co.uk/archives/rss.php"
     ],
-    pubDate: new Date()
+    pubDate: new Date(),
+    custom_namespaces: {
+        'content': 'http://purl.org/rss/1.0/modules/content/',
+        'dc': 'http://purl.org/dc/elements/1.1/',
+        'a10': 'http://www.w3.org/2005/Atom',
+        'feedburner': 'http://rssnamespace.org/feedburner/ext/1.0'
+      },
 };
 
 RSSCombiner(techFeedConfig)
     .then(function (feed) {
         var xml = feed.xml({ indent: true });
-        fs.writeFile('example/xml/tech-example.xml', xml, function (err) {
+        fs.writeFile('xml/tech-example.xml', xml, function (err) {
             if (err) {
                 console.error(err);
             } else {
