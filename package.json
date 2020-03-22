@@ -1,6 +1,6 @@
 {
   "name": "rss-combiner-ns",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Combine multiple RSS feed sources into one (with namespace support)",
   "keywords": [
     "rss",
